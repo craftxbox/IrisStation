@@ -485,6 +485,11 @@ GLOBAL_LIST_INIT(allowed_translations, list(
 	newsign.data["vname"] = source
 	newsign.data["vmask"] = 0
 
+	var/freq_info = S.frequency_infos["[signal.frequency]"]
+	if(freq_info)
+		signal.data["frequency_name"] = freq_info["name"]
+		signal.data["frequency_color"] = freq_info["color"]
+
 
 	var/pass = S.relay_information(newsign, /obj/machinery/telecomms/hub)
 	if(!pass) // If we're not sending this to the hub (i.e. we're running a basic tcomms or something)
